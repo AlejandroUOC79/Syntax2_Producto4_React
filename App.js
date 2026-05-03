@@ -1,77 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { FlatList, View, Text, Image, StyleSheet, ActivityIndicator } from 'react-native';
-// cosas de Firestore
-import { collection, query, orderBy, limit, getDocs, startAfter } from "firebase/firestore";
-import { db } from './firebaseConfig'; 
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { TouchableOpacity, Text } from 'react-native';
 
-const BasketTechApp = () => {
-  const [players, setPlayers] = useState([]);
-  const [lastVisible, setLastVisible] = useState(null); // Para el scroll infinito
-  const [loading, setLoading] = useState(false);
+// Importación de pantallas
+import Inicio from './src/screens/HomeScreen';
+import Detalle from './src/screens/Detalle';
+import Reproductor from './src/screens/Reproductor';
 
-  const COLORS = {
-    primary: '#7c4dff',
-    accent: '#e69520',
-    background: '#f8f9fa',
-    borde: '#0000002d',
-  };
+const Stack = createStackNavigator();
 
-  useEffect(() => {
-    fetchPlayers();
-  }, []);
-
-  const fetchPlayers = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, "jugadores"));
-      
-      console.log("¿Está vacío?: ", querySnapshot.empty);
-
-      const playersList = querySnapshot.docs.map(doc => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-
-      console.log("Lista final:", playersList);
-      setLoading(false);
-      setPlayers(playersList);
-    } catch (error) {
-      console.error("Error al buscar:", error); 
-      setLoading(false);
-    }
-  };
-
-  const renderItem = ({ item }) => (
-    <View style={[styles.card, { backgroundColor: COLORS.borde }]}>
-      <Image source={{ uri: item.img }} style={styles.image} />
-      <Text style={[styles.name, { color: COLORS.primary }]}>{item.nombre}</Text>
-    </View>
-  );
-
+export default function App() {
   return (
-    <View style={[styles.container, { backgroundColor: COLORS.background }]}>
-      <View style={[styles.header, { backgroundColor: COLORS.accent }]}>
-        <Text style={styles.headerTitle}>Syntax2 - BasketTech</Text>
-      </View>
-      
-      <FlatList
-        data={players}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-        onEndReachedThreshold={0.5}
-        ListFooterComponent={loading && <ActivityIndicator color={COLORS.primary} />}
-        contentContainerStyle={{ padding: 5 }}
-      />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator 
+        screenOptions={({ navigation }) => ({
+          headerStyle: { backgroundColor: '#e69520' }, // Estilo predeterminado de colores
+          headerTintColor: '#fff',
+          headerTitleAlign: 'center',
+          // Añadimos botón en el menú para volver a la ventana inicial
+          headerRight: () => (
+            <TouchableOpacity 
+              onPress={() => navigation.navigate('Inicio')}
+              style={{ marginRight: 15 }}
+            >
+              <Text style={{ color: 'white', fontWeight: 'bold' }}>Inicio</Text>
+            </TouchableOpacity>
+          ),
+        })}
+      >
+        <Stack.Screen name="Inicio" component={Inicio} options={{ title: 'BasketTech - Retos' }} />
+        <Stack.Screen name="Detalle" component={Detalle} />
+        <Stack.Screen name="Reproductor" component={Reproductor} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  header: { height: 90, justifyContent: 'center', paddingHorizontal: 20, paddingTop: 30 },
-  headerTitle: { color: 'white', fontWeight: 'bold', fontSize: 25, textAlign: 'center' },
-  card: { flexDirection: 'row', alignItems: 'center', marginBottom: 15, borderRadius: 15, overflow: 'hidden', borderWidth: 1, borderColor: "#8a8a8a", marginHorizontal: 10 },
-  image: { width: 100, height: 100 },
-  name: { marginLeft: 20, fontSize: 20, fontWeight: 'bold' }
-});
-
-export default BasketTechApp;
+}
