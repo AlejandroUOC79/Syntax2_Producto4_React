@@ -16,7 +16,7 @@ export default function App() {
           headerStyle: { backgroundColor: "#e69520" },
           headerTintColor: "#fff",
           headerTitleAlign: "center",
-          headerShown: true, // Forzado como booleano puro
+          headerShown: Boolean(true), // Forzado como booleano puro
           headerRight: () => (
             <TouchableOpacity
               onPress={() => navigation.navigate("Inicio")}
