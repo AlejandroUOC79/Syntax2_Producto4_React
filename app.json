@@ -1,25 +1,30 @@
 {
   "expo": {
-    "name": "React Native with Expo on CodeSandbox",
-    "slug": "react-native-codesandbox",
+    "name": "Syntax2 - BasketTech",
+    "slug": "syntax2-baskettech",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "backgroundColor": "#f8f9fa",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#7c4dff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.syntax2.baskettech"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.syntax2.baskettech"
     },
     "web": {
       "bundler": "metro",
