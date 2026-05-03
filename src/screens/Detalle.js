@@ -7,7 +7,7 @@ const Detalle = ({ route, navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <Image source={{ uri: player.img }} style={styles.image} />
+      <Image source={{ uri: player.img }} style={styles.image} resizeMode = "cover"/>
       
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{player.nombre}</Text>
