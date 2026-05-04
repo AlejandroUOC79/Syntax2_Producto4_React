@@ -57,7 +57,7 @@ const BasketTechApp = ({ navigation }) => {
         data={players}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
-        contentContainerStyle={{ padding: 5, paddingVertical: "25%" }}
+        contentContainerStyle={{ padding: 5, paddingVertical: 100 }}
       />
     </View>
   );

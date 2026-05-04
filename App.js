@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer style={{ backgroundColor: "#00000000"}}>
+    <NavigationContainer style={{ backgroundColor: "#00000000", height: 300}}>
       <Stack.Navigator
         screenOptions={({ navigation }) => ({
           headerMode: "float",
@@ -24,7 +24,7 @@ export default function App() {
                 flex: 1,
                 borderBottomLeftRadius: 15,
                 borderBottomRightRadius: 15,
-                height: "15%",
+                height: "100",
                 elevation: 5,
                 shadowColor: "#000",
                 shadowOpacity: 0.3,

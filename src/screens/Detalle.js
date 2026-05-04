@@ -86,7 +86,7 @@ const Detalle = ({ route, navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#0000002d", paddingTop: "15%" },
+  container: { flex: 1, backgroundColor: "#0000002d", paddingTop: 75 },
   imageMask: {
     width: "100%",
     height: 350,
