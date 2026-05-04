@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, View, Text, Image, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { collection, getDocs } from "firebase/firestore";
-import { db } from '../../firebaseConfig'; // RUTA CORREGIDA
+import { db } from '../../firebaseConfig';
 
 const BasketTechApp = ({ navigation }) => { 
   const [players, setPlayers] = useState([]);
@@ -10,8 +10,8 @@ const BasketTechApp = ({ navigation }) => {
   const COLORS = {
     primary: '#7c4dff',
     accent: '#e69520',
-    background: '#f8f9fa',
-    borde: '#0000002d',
+    background: '#0000002d',
+    borde: '#f8f9fa',
   };
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const BasketTechApp = ({ navigation }) => {
   const renderItem = ({ item }) => (
     <TouchableOpacity 
       style={[styles.card, { backgroundColor: COLORS.borde }]}
-      onPress={() => navigation.navigate('Detalle', { player: item })} // Asegúrate de que 'Detalle' existe en App.js
+      onPress={() => navigation.navigate('Detalle', { player: item })}
     >
       <Image source={{ uri: item.img }} style={styles.image} />
       <Text style={[styles.name, { color: COLORS.primary }]}>{item.nombre}</Text>
@@ -45,7 +45,7 @@ const BasketTechApp = ({ navigation }) => {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingTop: 50 }}>
         <ActivityIndicator size="large" color="#7c4dff" />
       </View>
     );
@@ -57,7 +57,7 @@ const BasketTechApp = ({ navigation }) => {
         data={players}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
-        contentContainerStyle={{ padding: 5 }}
+        contentContainerStyle={{ padding: 5, paddingVertical: "25%" }}
       />
     </View>
   );

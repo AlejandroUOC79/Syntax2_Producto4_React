@@ -13,13 +13,18 @@
     "@react-navigation/native": "^6.0.0",
     "@react-navigation/stack": "^6.0.0",
     "expo": "~54.0.0",
+    "expo-av": "~16.0.8",
     "expo-status-bar": "~3.0.9",
+    "expo-video": "~3.0.16",
     "firebase": "^10.7.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.5",
+    "react-native-media-console": "^2.2.4",
     "react-native-safe-area-context": "~5.6.0",
     "react-native-screens": "~4.16.0",
+    "react-native-video": "^6.19.2",
+    "react-native-video-player": "^0.16.3",
     "react-native-web": "^0.21.0"
   },
   "devDependencies": {
