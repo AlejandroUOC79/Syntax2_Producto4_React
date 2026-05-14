@@ -1,16 +1,61 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TouchableOpacity, Text, View } from "react-native";
 import { HeaderHeightContext } from "@react-navigation/elements";
+import messaging from '@react-native-firebase/messaging';
 
 import Inicio from "./src/screens/HomeScreen";
 import Detalle from "./src/screens/Detalle";
 import Reproductor from "./src/screens/Reproductor";
 
+import * as Notifications from 'expo-notifications';
+import * as Device from 'expo-device';
+
 const Stack = createStackNavigator();
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
+
 export default function App() {
+  useEffect(() => {
+    registerForPushNotificationsAsync();
+  }, []);
+
+  async function registerForPushNotificationsAsync() {
+    if (Device.isDevice) {
+      try {
+        const { status: existingStatus } = await Notifications.getPermissionsAsync();
+        let finalStatus = existingStatus;
+        if (existingStatus !== 'granted') {
+          const { status } = await Notifications.requestPermissionsAsync();
+          finalStatus = status;
+        }
+        if (finalStatus !== 'granted') {
+          alert('Fallo de permiso para notificaciones');
+          return;
+        }
+        
+        // A veces el token tarda un pelín en generarse al primer inicio
+        const token = await messaging().getToken();
+        console.log("----------------------------");
+        console.log("TU TOKEN DE FIREBASE:");
+        console.log(token);
+        console.log("----------------------------");
+
+      } catch (error) {
+        console.error("Error obteniendo el token:", error);
+      }
+    } else {
+      alert('Debes usar un dispositivo físico');
+    }
+  }
+
   return (
     <NavigationContainer style={{ backgroundColor: "#00000000", height: 300}}>
       <Stack.Navigator

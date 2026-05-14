@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "681589601697",
+    "project_id": "uoc-codea",
+    "storage_bucket": "uoc-codea.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681589601697:android:3a7aeff4df39281eb247e0",
+        "android_client_info": {
+          "package_name": "uoc.syntax2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS6eeSiPQ_d7TmNvn0PbB5v3_7zKP163U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

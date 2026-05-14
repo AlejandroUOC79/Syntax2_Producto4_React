@@ -17,21 +17,29 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.syntax2.baskettech"
+      "bundleIdentifier": "uoc.syntax2"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.syntax2.baskettech"
+      "package": "uoc.syntax2",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-video"
-    ]
+      "expo-video",
+      "@react-native-firebase/app",
+      "@react-native-firebase/messaging"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "28dba846-e8aa-4ad5-99fb-6f3cd2762db0"
+      }
+    }
   }
 }
